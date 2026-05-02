@@ -340,25 +340,35 @@ body {
   margin-bottom: 3rem;
 }
 
-.slide1-footer {
+.qr-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 0.85rem;
-  color: var(--gray-400);
-  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--white);
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 1rem;
+  width: max-content;
+  max-width: 90vw;
 }
 
-.slide1-footer strong {
+.qr-image {
+  width: clamp(80px, 10vw, 100px);
+  height: clamp(80px, 10vw, 100px);
+  filter: contrast(1.1);
+  object-fit: contain;
+}
+
+.qr-label {
   color: var(--navy);
-  font-weight: 700;
-}
-
-.footer-line {
-  width: 40px;
-  height: 1px;
-  background: var(--silver);
+  font-size: 0.7rem;
+  font-weight: 500;
+  margin-top: 8px;
+  letter-spacing: 1px;
+  text-align: center;
 }
 
 /* ============================================================
@@ -1720,12 +1730,17 @@ body {
     /* Bloqueia scroll horizontal nativo para favorecer SWIPE JS */
   }
 
+  .slide {
+    height: 100vh;
+    overflow: hidden;
+  }
+
   .slide__content {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem 160px 1.5rem;
     overflow-y: auto;
     /* Permite rolar se o conteúdo crescer muito verticalmente */
     -webkit-overflow-scrolling: touch;
-    height: 100vh;
+    height: 100%;
   }
 
   /* Geração e ajuste de botões maiores (Touch Target: 44x44 mínimo) */
@@ -1739,12 +1754,19 @@ body {
 
   .nav-controls {
     bottom: 1rem;
-    z-index: 100;
+    z-index: 1000;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
   /* Escalonamento Dinâmico de Tipografia */
   .slide1-title {
-    font-size: clamp(2.2rem, 8vw, 4rem);
+    font-size: clamp(1.87rem, 6.8vw, 3.4rem);
+  }
+
+  .risk-badge svg {
+    max-height: 15vh;
+    width: auto;
   }
 
   .slide1-subtitle,
