@@ -239,21 +239,36 @@
     }
   });
 
-  // Touch/swipe support
+  // Touch/swipe support — direction-aware to not block iOS vertical scroll
   let touchStartX = 0;
-  let touchEndX = 0;
+  let touchStartY = 0;
+  let touchMoved = false;
 
   document.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+    touchMoved = false;
+  }, { passive: true });
+
+  document.addEventListener('touchmove', () => {
+    touchMoved = true;
   }, { passive: true });
 
   document.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 60) {
-      if (diff > 0) nextSlide();
+    if (!touchMoved) return; // tap, not swipe
+
+    const touchEndX = e.changedTouches[0].screenX;
+    const touchEndY = e.changedTouches[0].screenY;
+    const diffX = touchStartX - touchEndX;
+    const diffY = touchStartY - touchEndY;
+
+    // Only trigger slide change if the gesture is predominantly horizontal
+    // (X displacement > 2× Y displacement) and exceeds the threshold
+    if (Math.abs(diffX) > 60 && Math.abs(diffX) > Math.abs(diffY) * 2) {
+      if (diffX > 0) nextSlide();
       else prevSlide();
     }
+    // Otherwise, do nothing — let iOS handle the vertical scroll natively
   }, { passive: true });
 
   // Mouse wheel

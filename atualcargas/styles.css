@@ -56,9 +56,11 @@ body {
   font-family: var(--font-body);
   background: var(--snow);
   color: var(--navy);
-  overflow: hidden;
+  overflow: clip;
   width: 100vw;
   height: 100vh;
+  /* overflow:clip instead of hidden — prevents body scroll
+     without blocking overflow-y:auto in child elements on iOS Safari */
 }
 
 /* --- SLIDE SYSTEM --- */
@@ -1725,21 +1727,29 @@ body {
 
 @media (max-width: 768px) {
   body {
-    overflow-x: hidden;
-    touch-action: pan-y pinch-zoom;
+    overflow: clip;
+    overscroll-behavior: none;
+    position: fixed;
+    inset: 0;
+    /* position:fixed + inset:0 prevents iOS Safari rubber-band bounce
+       while allowing child elements to scroll normally */
   }
 
   /* --- SLIDE STRUCTURE (mobile scroll) --- */
   .slide {
-    height: 100vh;
+    position: fixed;
+    inset: 0;
+    height: 100%;
     overflow: hidden;
   }
 
   .slide__content {
     padding: 1.5rem 1.25rem 80px 1.25rem;
-    overflow-y: auto;
+    overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     height: 100%;
+    /* scroll (not auto) ensures iOS always enables the scroll gesture
+       on this element even when content barely exceeds the viewport */
   }
 
   /* --- 1. NOVO SISTEMA DE NAVEGAÇÃO MOBILE (Barra fixa bottom) --- */
