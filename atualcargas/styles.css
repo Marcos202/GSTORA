@@ -249,6 +249,21 @@ body {
 }
 
 /* ============================================================
+   BRAND LOGO (Slides 01 & 08)
+   ============================================================ */
+.brand-logo {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.brand-logo--closing {
+  margin-bottom: 16px;
+}
+
+/* ============================================================
    SLIDE 1: CAPA
    ============================================================ */
 .blueprint-canvas {
@@ -1796,6 +1811,16 @@ body {
   /* Ocultar keyboard hint no mobile — a barra já é intuitiva */
   .keyboard-hint {
     display: none;
+  }
+
+  /* --- BRAND LOGO MOBILE --- */
+  .brand-logo {
+    height: clamp(30px, 8vw, 42px);
+    margin-bottom: 14px;
+  }
+
+  .brand-logo--closing {
+    margin-bottom: 10px;
   }
 
   /* --- TIPOGRAFIA MOBILE --- */
