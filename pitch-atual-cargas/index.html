@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSTORA — Soluções Empresariais</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0A1628;
+            --white: #FFFFFF;
+            --ice: #F8F9FB;
+            --silver: #E0E4EB;
+            --cyan: #00BCD4;
+            --font-display: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--ice);
+            color: var(--navy);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .brand-name {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .subtitle {
+            font-family: var(--font-display);
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            font-weight: 400;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--navy);
+            opacity: 0.7;
+            margin-bottom: 4rem;
+        }
+
+        .cta-link {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--navy);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 1.2rem 2.5rem;
+            border: 1px solid var(--navy);
+            border-radius: 4px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-link:hover {
+            color: var(--white);
+            background-color: var(--navy);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(10, 22, 40, 0.1);
+        }
+
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(10, 22, 40, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(10, 22, 40, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        .footer-note {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            opacity: 0.4;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-pattern"></div>
+
+    <div class="container">
+        <h1 class="brand-name">GSTORA</h1>
+        <h2 class="subtitle">Gstora Soluções Empresariais</h2>
+
+        <a href="/atualcargas" class="cta-link">Ver Apresentação Atual Cargas</a>
+    </div>
+
+    <div class="footer-note">
+        © 2026 GSTORA. Todos os direitos reservados.
+    </div>
+</body>
+
+</html>
