@@ -1727,39 +1727,68 @@ body {
   body {
     overflow-x: hidden;
     touch-action: pan-y pinch-zoom;
-    /* Bloqueia scroll horizontal nativo para favorecer SWIPE JS */
   }
 
+  /* --- SLIDE STRUCTURE (mobile scroll) --- */
   .slide {
     height: 100vh;
     overflow: hidden;
   }
 
   .slide__content {
-    padding: 2rem 1.5rem 160px 1.5rem;
+    padding: 1.5rem 1.25rem 80px 1.25rem;
     overflow-y: auto;
-    /* Permite rolar se o conteúdo crescer muito verticalmente */
     -webkit-overflow-scrolling: touch;
     height: 100%;
   }
 
-  /* Geração e ajuste de botões maiores (Touch Target: 44x44 mínimo) */
+  /* --- 1. NOVO SISTEMA DE NAVEGAÇÃO MOBILE (Barra fixa bottom) --- */
+  .nav-controls {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 56px;
+    border-radius: 0;
+    padding: 0 1.5rem;
+    justify-content: space-between;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: none;
+    border-top: 1px solid rgba(208, 213, 221, 0.4);
+    box-shadow: 0 -4px 20px rgba(10, 22, 40, 0.06);
+  }
+
   .nav-btn {
     width: 44px;
     height: 44px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: transparent;
+    border: 1.5px solid var(--silver);
+    backdrop-filter: none;
+    box-shadow: none;
   }
 
-  .nav-controls {
-    bottom: 1rem;
-    z-index: 1000;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+  .nav-btn:hover {
+    box-shadow: none;
   }
 
-  /* Escalonamento Dinâmico de Tipografia */
+  .slide-counter {
+    font-size: 0.8rem;
+    gap: 0.2rem;
+  }
+
+  #currentSlide {
+    font-size: 1rem;
+  }
+
+  /* Ocultar keyboard hint no mobile — a barra já é intuitiva */
+  .keyboard-hint {
+    display: none;
+  }
+
+  /* --- TIPOGRAFIA MOBILE --- */
   .slide1-title {
     font-size: clamp(1.87rem, 6.8vw, 3.4rem);
   }
@@ -1775,7 +1804,8 @@ body {
   }
 
   .slide7-title {
-    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    font-size: clamp(1.4rem, 5.5vw, 2.2rem);
+    margin-bottom: 1.5rem;
   }
 
   .closing-logo {
@@ -1788,7 +1818,7 @@ body {
     line-height: 1.5;
   }
 
-  /* Ajuste Fino: Slide 04 (Terreno) */
+  /* --- SLIDE 04 (Terreno) --- */
   .terrain-animation {
     width: 100%;
     padding: 1.25rem;
@@ -1813,32 +1843,180 @@ body {
     margin-top: 1.5rem;
   }
 
-  /* Ajuste Fino: Slide 07 (Valores) */
+  /* --- 2. SLIDE 06 (LOG TÉCNICO) — Empilhamento Vertical --- */
+  .slide6-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.5rem 1.25rem 80px 1.25rem;
+  }
+
+  .slide6-left {
+    padding-right: 0;
+    border-right: none;
+  }
+
+  .slide6-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .log-tecnico {
+    max-height: none;
+    overflow-y: visible;
+    padding-right: 0;
+  }
+
+  .log-item {
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--ice);
+  }
+
+  .log-item:last-child {
+    border-bottom: none;
+  }
+
+  .log-item-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .log-item-text {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    padding-left: 1rem;
+  }
+
+  .slide6-right {
+    padding-left: 0;
+  }
+
+  .data-room-container {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .data-room-header {
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+  }
+
+  .doc-btn {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.6rem;
+    white-space: normal;
+  }
+
+  .doc-btn span {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    padding-right: 0.75rem;
+    line-height: 1.4;
+  }
+
+  /* --- 3. SLIDE 07 (TABELA DE PREÇOS) — Blocos Sequenciais --- */
   .slide7-split {
-    gap: 3rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .slide7-left {
-    padding: 0;
+    padding: 1.25rem;
+    background: var(--white);
+    border: 1px solid var(--ice);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(10, 22, 40, 0.04);
+  }
+
+  .market-label {
+    font-size: 0.65rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .market-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.85rem 0;
+  }
+
+  .market-desc {
+    max-width: 100%;
+    font-size: 0.82rem;
+  }
+
+  .market-val {
+    font-size: 0.85rem;
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .market-total {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding-top: 1rem;
+  }
+
+  .market-total-val {
+    font-size: 1rem;
   }
 
   .chartex-box {
-    padding: 2rem 1.5rem;
+    padding: 1.75rem 1.25rem;
+    border-radius: 12px;
+    margin-top: 0;
+  }
+
+  .chartex-waiver {
+    font-size: 0.82rem;
+    line-height: 1.65;
   }
 
   .chartex-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.75rem;
+    gap: 0.5rem;
+    padding: 0.85rem 0;
+  }
+
+  .row-title {
+    font-size: 0.8rem;
+  }
+
+  .chartex-amount {
+    font-size: 1.25rem;
+  }
+
+  .chartex-amount--secondary {
+    font-size: 0.95rem;
   }
 
   .chartex-amount-group {
     align-items: flex-start;
-    /* Alinha a isenção junto ao valor para ficar nítido */
   }
 
   .badge-isenxao {
     margin-top: 0;
+  }
+
+  .chartex-total {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+  }
+
+  .chartex-total-val {
+    font-size: 1.6rem;
+  }
+
+  .chartex-total-val small {
+    font-size: 0.85rem;
   }
 }
 
