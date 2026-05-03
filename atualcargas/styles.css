@@ -252,10 +252,10 @@ body {
    BRAND LOGO (Slides 01 & 08)
    ============================================================ */
 .brand-logo {
-  height: 45px;
+  height: 80px;
   width: auto;
   object-fit: contain;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   display: block;
 }
 
@@ -1815,8 +1815,8 @@ body {
 
   /* --- BRAND LOGO MOBILE --- */
   .brand-logo {
-    height: clamp(30px, 8vw, 42px);
-    margin-bottom: 14px;
+    height: clamp(50px, 14vw, 70px);
+    margin-bottom: 16px;
   }
 
   .brand-logo--closing {
