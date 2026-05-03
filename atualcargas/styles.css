@@ -1739,94 +1739,103 @@ body {
    ============================================================ */
 @media print {
   @page {
-    size: landscape;
-    margin: 0;
+    size: auto;
+    margin: 0mm;
   }
 
-  * {
+  *,
+  *::before,
+  *::after {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
-    color-adjust: exact !important;
   }
 
-  html,
-  body {
-    width: 100%;
-    height: auto;
+  html {
+    height: auto !important;
     overflow: visible !important;
-    margin: 0;
-    padding: 0;
-    background: var(--snow) !important;
+    position: static !important;
   }
 
-  /* Hide interactive elements */
+  body {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  /* ---- HIDE interactive elements ---- */
   .nav-controls,
   .progress-bar,
   .keyboard-hint,
   .qr-container,
   .print-actions,
-  .geo-accent {
+  .geo-accent,
+  .blueprint-canvas,
+  .terrain-controls {
     display: none !important;
   }
 
-  /* Force all slides visible and stacked */
+  /* ---- FORCE ALL 8 SLIDES VISIBLE & STACKED ---- */
   .slide {
-    position: relative !important;
-    display: flex !important;
+    position: static !important;
+    /* break out of fixed */
+    inset: auto !important;
+    /* clear fixed coords */
+    display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
     width: 100vw !important;
     height: 100vh !important;
-    page-break-after: always;
-    break-after: page;
-    background: var(--snow) !important;
+    overflow: hidden !important;
     z-index: auto !important;
+    background: white !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
   .slide:last-child {
-    page-break-after: avoid;
-    break-after: avoid;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
   }
 
+  /* ---- SLIDE CONTENT ---- */
   .slide__content {
+    position: relative !important;
     overflow: visible !important;
-    height: auto !important;
+    height: 100% !important;
     padding: 2.5rem 3rem !important;
   }
 
-  /* Ensure grid backgrounds print */
   .slide__grid-bg {
-    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
   }
 
-  /* Show all animate-in elements */
+  /* ---- ANIMATIONS → all visible ---- */
   .animate-in,
   .animate-closing {
     opacity: 1 !important;
     transform: none !important;
+    transition: none !important;
   }
 
-  /* Blueprint canvas — hide (canvas doesn't print well) */
-  .blueprint-canvas {
-    display: none !important;
-  }
-
-  /* Ensure dark box prints with background */
+  /* ---- DARK BOX (Slide 07) ---- */
   .chartex-box {
-    background: rgba(10, 25, 47, 0.92) !important;
+    background: rgba(10, 25, 47, 0.95) !important;
   }
 
-  /* Terrain phases — show only phase 3 (final result) */
+  /* ---- TERRAIN (Slide 04) show only active phase ---- */
   .terrain-phase--hidden {
     display: none !important;
   }
 
-  .terrain-controls {
-    display: none !important;
-  }
-
-  /* HUD steps — all visible */
+  /* ---- HUD STEPS (Slide 03) ---- */
   .hud-step {
     opacity: 1 !important;
     transform: none !important;
@@ -1836,15 +1845,26 @@ body {
     width: 100% !important;
   }
 
-  /* Links in slide 6 — show as blocks */
+  /* ---- DOC LINKS (Slide 06) ---- */
   .doc-btn {
     color: var(--navy) !important;
     border-color: var(--silver) !important;
+    transform: none !important;
   }
 
-  .doc-btn:hover {
-    transform: none !important;
-    background: var(--white) !important;
+  /* ---- SLIDE 1 CENTERING ---- */
+  .slide1-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* ---- SLIDE 8 CENTERING ---- */
+  .slide8-content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 }
 
