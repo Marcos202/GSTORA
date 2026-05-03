@@ -302,3 +302,8 @@
     init();
   }
 })();
+
+// --- PRINT / PDF ---
+function printPresentation() {
+  window.print();
+}

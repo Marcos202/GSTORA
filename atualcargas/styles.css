@@ -1659,7 +1659,7 @@ body {
   font-family: var(--font-display);
   font-size: 5rem;
   font-weight: 900;
-  color: var(--navy);
+  color: #000000;
   letter-spacing: 0.05em;
   line-height: 1;
 }
@@ -1692,6 +1692,159 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   PRINT ACTIONS (Slide 08)
+   ============================================================ */
+.print-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.print-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  background: var(--white);
+  border: 1px solid var(--silver);
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--navy);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.print-btn:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  box-shadow: 0 4px 16px rgba(0, 188, 212, 0.12);
+  transform: translateY(-2px);
+}
+
+.print-btn svg {
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   PRINT STYLESHEET — 8-page PDF/Document
+   ============================================================ */
+@media print {
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: auto;
+    overflow: visible !important;
+    margin: 0;
+    padding: 0;
+    background: var(--snow) !important;
+  }
+
+  /* Hide interactive elements */
+  .nav-controls,
+  .progress-bar,
+  .keyboard-hint,
+  .qr-container,
+  .print-actions,
+  .geo-accent {
+    display: none !important;
+  }
+
+  /* Force all slides visible and stacked */
+  .slide {
+    position: relative !important;
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    page-break-after: always;
+    break-after: page;
+    background: var(--snow) !important;
+    z-index: auto !important;
+  }
+
+  .slide:last-child {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .slide__content {
+    overflow: visible !important;
+    height: auto !important;
+    padding: 2.5rem 3rem !important;
+  }
+
+  /* Ensure grid backgrounds print */
+  .slide__grid-bg {
+    display: block !important;
+  }
+
+  /* Show all animate-in elements */
+  .animate-in,
+  .animate-closing {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Blueprint canvas — hide (canvas doesn't print well) */
+  .blueprint-canvas {
+    display: none !important;
+  }
+
+  /* Ensure dark box prints with background */
+  .chartex-box {
+    background: rgba(10, 25, 47, 0.92) !important;
+  }
+
+  /* Terrain phases — show only phase 3 (final result) */
+  .terrain-phase--hidden {
+    display: none !important;
+  }
+
+  .terrain-controls {
+    display: none !important;
+  }
+
+  /* HUD steps — all visible */
+  .hud-step {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hud-fill {
+    width: 100% !important;
+  }
+
+  /* Links in slide 6 — show as blocks */
+  .doc-btn {
+    color: var(--navy) !important;
+    border-color: var(--silver) !important;
+  }
+
+  .doc-btn:hover {
+    transform: none !important;
+    background: var(--white) !important;
   }
 }
 
