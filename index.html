@@ -4,21 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSTORA — Soluções Empresariais</title>
+    <title>ALFA — Engenharia de Negócios</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --navy: #0A1628;
-            --white: #FFFFFF;
-            --ice: #F8F9FB;
-            --silver: #E0E4EB;
-            --cyan: #00BCD4;
+            --light-bg: #F8F9FB;
+            --light-txt: #0A1628;
+            --dark-bg: #050505;
+            --dark-txt: #FFFFFF;
+            --gold: #D4AF37;
+            --cyan: #00E5FF;
+            --font-sans: 'Inter', sans-serif;
             --font-display: 'Montserrat', sans-serif;
-            --font-body: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
         }
 
         * {
@@ -28,120 +30,523 @@
         }
 
         body {
-            font-family: var(--font-body);
-            background-color: var(--ice);
-            color: var(--navy);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+            font-family: var(--font-sans);
+            background-color: var(--light-bg);
+            color: var(--light-txt);
+            overflow-x: hidden;
+            transition: background-color 0.8s ease, color 0.8s ease;
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Helpers */
+        .theme-dark {}
+
+        /* Hook for GSAP */
+
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .tag {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Sec 1: Hero */
+        .sec-hero .container {
             text-align: center;
-            max-width: 800px;
-            padding: 2rem;
-            animation: fadeIn 1.2s ease-out forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .brand-name {
+        .hero-logo {
             font-family: var(--font-display);
-            font-size: clamp(3rem, 10vw, 6rem);
+            font-size: clamp(3.5rem, 8vw, 7rem);
             font-weight: 700;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            color: var(--navy);
             line-height: 1;
+            margin-bottom: 0.5rem;
+            color: inherit;
         }
 
-        .subtitle {
+        .hero-sub {
             font-family: var(--font-display);
-            font-size: clamp(0.9rem, 3vw, 1.2rem);
-            font-weight: 400;
-            letter-spacing: 0.5em;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            letter-spacing: 0.4em;
             text-transform: uppercase;
-            color: var(--navy);
-            opacity: 0.7;
+            opacity: 0.6;
+            margin-bottom: 3rem;
+        }
+
+        .hero-slogan {
+            font-family: var(--font-serif);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-style: italic;
+            max-width: 600px;
+            font-weight: 400;
+        }
+
+        /* Sec 2: Problem */
+        .sec-problem .tag {
+            color: var(--gold);
+        }
+
+        .sec-problem h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .sec-problem .desc {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.8;
+            max-width: 600px;
             margin-bottom: 4rem;
         }
 
-        .cta-link {
-            display: inline-block;
-            text-decoration: none;
-            color: var(--navy);
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: transform 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+            /* Gold border hint */
+        }
+
+        .card-title {
             font-family: var(--font-display);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
             text-transform: uppercase;
-            padding: 1.2rem 2.5rem;
-            border: 1px solid var(--navy);
-            border-radius: 4px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        .card-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        /* Sec 3: Ecosystem */
+        .sec-ecosystem {
+            background: radial-gradient(circle at center, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
+        }
+
+        .sec-ecosystem h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .pillars-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .pillar-item {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border: 1px solid rgba(0, 229, 255, 0.1);
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
             position: relative;
             overflow: hidden;
         }
 
-        .cta-link:hover {
-            color: var(--white);
-            background-color: var(--navy);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(10, 22, 40, 0.1);
-        }
-
-        .background-pattern {
+        .pillar-item::before {
+            content: '';
             position: absolute;
-            top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(10, 22, 40, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(10, 22, 40, 0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--cyan);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .footer-note {
-            position: absolute;
-            bottom: 2rem;
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            opacity: 0.4;
+        .pillar-item:hover::before {
+            opacity: 1;
+        }
+
+        .pillar-num {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--cyan);
+            min-width: 60px;
+            font-weight: 600;
+        }
+
+        .pillar-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
             text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .pillar-content p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Sec 4: Results */
+        .sec-results {
+            text-align: center;
+        }
+
+        .sec-results .tag {
+            color: var(--light-txt);
+            opacity: 0.5;
+        }
+
+        .sec-results h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 4rem;
+            font-weight: 600;
+        }
+
+        .giant-result {
+            margin-bottom: 5rem;
+        }
+
+        .giant-num {
+            font-family: var(--font-serif);
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 600;
+            color: var(--light-txt);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .giant-sub {
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .auth-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(10, 22, 40, 0.1);
+        }
+
+        .auth-box {
+            text-align: left;
+        }
+
+        .auth-box .auth-val {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-box .auth-title {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+        }
+
+        .auth-box .auth-sub {
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Sec 5: CTA */
+        .sec-cta {
+            text-align: center;
+            min-height: 60vh;
+        }
+
+        .sec-cta h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 3rem;
+            font-weight: 700;
+            max-width: 800px;
+            margin-inline: auto;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background-color: var(--dark-bg);
+            color: var(--dark-txt);
+            text-decoration: none;
+            padding: 1.2rem 3rem;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Init states for GSAP */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media screen and (max-width: 768px) {
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .cards-grid,
+            .auth-boxes {
+                grid-template-columns: 1fr;
+            }
+
+            .pillar-item {
+                flex-direction: row;
+                padding: 1.2rem 1.5rem;
+            }
+
+            .auth-box {
+                text-align: center;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="background-pattern"></div>
 
-    <div class="container">
-        <h1 class="brand-name">GSTORA</h1>
-        <h2 class="subtitle">Gstora Soluções Empresariais</h2>
+    <section class="sec-hero">
+        <div class="container hero-content">
+            <h1 class="hero-logo">ALFA</h1>
+            <div class="hero-sub">Soluções Empresariais</div>
+            <div class="hero-slogan">Gestão inteligente para negócios em expansão.</div>
+        </div>
+    </section>
 
-        <a href="/atualcargas" class="cta-link">Ver Apresentação Atual Cargas</a>
-    </div>
+    <!-- Marker to trigger Dark Mode -->
+    <section class="sec-problem theme-dark">
+        <div class="container">
+            <div class="tag fade-up">O Problema</div>
+            <h2 class="fade-up">Crescer dói.<br>Mas estagnar é fatal.</h2>
+            <p class="desc fade-up">O movimento natural das empresas é focar exclusivamente em vendas. Mas sem
+                infraestrutura sólida e processos mapeados, faturar mais não significa lucrar mais. O board não quer
+                mais desculpas operacionais. Quer saber do resultado líquido.</p>
 
-    <div class="footer-note">
-        © 2026 GSTORA. Todos os direitos reservados.
-    </div>
+            <div class="cards-grid">
+                <div class="glass-card fade-up">
+                    <div class="card-title">O Sintoma</div>
+                    <div class="card-text">Operação travada pela burocracia, perda de ativos e margens espremidas pela
+                        ineficiência.</div>
+                </div>
+                <div class="glass-card fade-up">
+                    <div class="card-title">O Gargalo</div>
+                    <div class="card-text">As saídas óbvias já foram tentadas. Mais software, mais contratações, mais
+                        reuniões. Mas o ponteiro do lucro não moveu.</div>
+                </div>
+                <div class="glass-card fade-up">
+                    <div class="card-title">A Resposta ALFA</div>
+                    <div class="card-text">Entramos na operação. Identificamos a hemorragia financeira, reestruturamos a
+                        base legal e técnica, e executamos até o lucro aparecer.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec-ecosystem theme-dark">
+        <div class="container">
+            <h2 class="fade-up">Engenharia de Negócios<br>de Ponta a Ponta.</h2>
+            <div class="pillars-list">
+                <div class="pillar-item fade-up">
+                    <div class="pillar-num">01</div>
+                    <div class="pillar-content">
+                        <h3>Consultoria</h3>
+                        <p>Diagnóstico cirúrgico e estratégia de alto nível.</p>
+                    </div>
+                </div>
+                <div class="pillar-item fade-up">
+                    <div class="pillar-num">02</div>
+                    <div class="pillar-content">
+                        <h3>Assessoria</h3>
+                        <p>Acompanhamento lado a lado com a diretoria (C-Level).</p>
+                    </div>
+                </div>
+                <div class="pillar-item fade-up">
+                    <div class="pillar-num">03</div>
+                    <div class="pillar-content">
+                        <h3>Tecnologia</h3>
+                        <p>Implementação de inteligência de dados e automação.</p>
+                    </div>
+                </div>
+                <div class="pillar-item fade-up">
+                    <div class="pillar-num">04</div>
+                    <div class="pillar-content">
+                        <h3>Gestão</h3>
+                        <p>Reestruturação de processos, metas e cultura operacional.</p>
+                    </div>
+                </div>
+                <div class="pillar-item fade-up">
+                    <div class="pillar-num">05</div>
+                    <div class="pillar-content">
+                        <h3>Administração</h3>
+                        <p>Blindagem de ativos e eficiência administrativa direta.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaves Dark Mode to enter White Mode again -->
+    <section class="sec-results">
+        <div class="container">
+            <div class="tag fade-up">Números que mudam o jogo</div>
+            <h2 class="fade-up">Nós não vendemos horas.<br>Entregamos Valuation.</h2>
+
+            <div class="giant-result fade-up">
+                <div class="giant-num">Milhões<br>em Ativos</div>
+                <div class="giant-sub">salvos, legalizados e otimizados para nossos clientes.</div>
+            </div>
+
+            <div class="auth-boxes">
+                <div class="auth-box fade-up">
+                    <div class="auth-val">+30%</div>
+                    <div class="auth-title">Inteligência Logística</div>
+                    <div class="auth-sub">Operações destravadas</div>
+                </div>
+                <div class="auth-box fade-up">
+                    <div class="auth-val">100%</div>
+                    <div class="auth-title">Blindagem</div>
+                    <div class="auth-sub">Riscos governamentais mitigados</div>
+                </div>
+                <div class="auth-box fade-up">
+                    <div class="auth-val">2x</div>
+                    <div class="auth-title">Expansão</div>
+                    <div class="auth-sub">Área operacional ampliada</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec-cta">
+        <div class="container">
+            <h2 class="fade-up">Não acredite em promessas.<br>Veja como operamos na prática.</h2>
+            <div class="fade-up">
+                <a href="/atualcargas" class="cta-btn">Analisar o Case "Atual Cargas" ➔</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Theme Transition (White -> Dark -> White)
+        ScrollTrigger.create({
+            trigger: ".sec-problem",
+            start: "top 50%",
+            endTrigger: ".sec-ecosystem",
+            end: "bottom 50%",
+            onEnter: () => gsap.to("body", { backgroundColor: "#050505", color: "#FFFFFF", duration: 0.8 }),
+            onLeave: () => gsap.to("body", { backgroundColor: "#F8F9FB", color: "#0A1628", duration: 0.8 }),
+            onEnterBack: () => gsap.to("body", { backgroundColor: "#050505", color: "#FFFFFF", duration: 0.8 }),
+            onLeaveBack: () => gsap.to("body", { backgroundColor: "#F8F9FB", color: "#0A1628", duration: 0.8 })
+        });
+
+        // Hero Fade Out on Scroll
+        gsap.to('.hero-content', {
+            opacity: 0,
+            y: -50,
+            scrollTrigger: {
+                trigger: '.sec-hero',
+                start: 'top top',
+                end: 'bottom 20%',
+                scrub: true
+            }
+        });
+
+        // Universal Fade-Up animations
+        const sections = ['.sec-problem', '.sec-ecosystem', '.sec-results', '.sec-cta'];
+
+        sections.forEach(secClass => {
+            gsap.utils.toArray(secClass).forEach(section => {
+                const elements = section.querySelectorAll('.fade-up');
+                if (elements.length > 0) {
+                    gsap.to(elements, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        stagger: 0.15,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top 75%"
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
 </body>
 
 </html>

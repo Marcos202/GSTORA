@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engenharia de Custos | ALFA</title>
+    <meta name="description"
+        content="Estimativa de Investimento do Polo Empresarial Sul. Relatório de Transparência Financeira ALFA.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/orcamento/styles.css">
+</head>
+
+<body>
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" aria-label="Slide anterior">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+        <div class="slide-counter">
+            <span id="currentSlide">01</span>
+            <span class="separator">/</span>
+            <span id="totalSlides">08</span>
+        </div>
+        <button class="nav-btn" id="nextBtn" aria-label="Próximo slide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- SLIDE 1: CAPA DO INVESTIMENTO -->
+    <section class="slide slide--active" id="slide-1" data-slide="1">
+        <div class="slide__grid-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="slide__content center-content">
+            <img src="https://podtocantins.com/wp-content/uploads/2026/05/6ed9dad43a.png" alt="ALFA Logo"
+                class="brand-logo animate-in" data-delay="0">
+            <div class="slide-eyebrow animate-in" data-delay="100">
+                <span class="tag-line"></span>
+                <span class="tag-text tag-gold">RELATÓRIO DE TRANSPARÊNCIA FINANCEIRA</span>
+                <span class="tag-line"></span>
+            </div>
+            <h1 class="slide-title animate-in" data-delay="200">
+                ESTIMATIVA DE INVESTIMENTO<br>CONSOLIDADA
+            </h1>
+            <p class="slide-subtitle animate-in" data-delay="400">
+                Polo Empresarial Sul
+            </p>
+            <div class="hero-quote animate-in" data-delay="600">
+                "Engenharia de custos aplicada: A economia real nasce na curadoria técnica dos fornecedores."
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: A METODOLOGIA ALFA -->
+    <section class="slide" id="slide-2" data-slide="2">
+        <div class="slide__grid-bg"></div>
+        <div class="slide__content split-content">
+            <div class="content-left animate-in" data-delay="0">
+                <div class="icon-badge">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                </div>
+                <span class="slide-eyebrow">METODOLOGIA ALFA</span>
+                <h2 class="slide-title">Curadoria e Auditoria de Custos</h2>
+                <p class="slide-text">
+                    "Não apenas orçamos; auditamos. Selecionamos os melhores players do mercado do Piauí para garantir
+                    que cada real investido se transforme em patrimônio líquido, sem desperdícios operacionais."
+                </p>
+                <div class="highlight-box gold-border animate-in" data-delay="200">
+                    <strong>Transparência 360°:</strong> Acesso total aos orçamentos originais de cada etapa.
+                </div>
+            </div>
+            <div class="content-right animate-in" data-delay="300">
+                <!-- Visual placeholder for methodology -->
+                <div class="audit-layers">
+                    <div class="layer layer-1">1. Prospecção de Fornecedores</div>
+                    <div class="layer layer-2">2. Equalização Técnica</div>
+                    <div class="layer layer-3">3. Auditoria ALFA</div>
+                    <div class="layer layer-4 layer-gold">4. Investimento Otimizado</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: FASE 1 - INTELIGÊNCIA E IMPLANTAÇÃO -->
+    <section class="slide" id="slide-3" data-slide="3">
+        <div class="slide__grid-bg"></div>
+        <div class="slide__content">
+            <div class="section-header animate-in" data-delay="0">
+                <span class="slide-eyebrow">FASE 1</span>
+                <h2 class="slide-title">Inteligência e Implantação</h2>
+            </div>
+
+            <div class="cost-table animate-in" data-delay="200">
+                <div class="cost-row">
+                    <div class="cost-item">
+                        <span class="cost-name">Projetos Técnicos (Arquitetura/Engenharia)</span>
+                    </div>
+                    <div class="cost-value">R$ 130.040,00</div>
+                </div>
+                <div class="cost-row">
+                    <div class="cost-item">
+                        <span class="cost-name">Logística de Canteiro de Obra</span>
+                    </div>
+                    <div class="cost-value">R$ 130.000,00</div>
+                </div>
+                <div class="cost-row">
+                    <div class="cost-item">
+                        <span class="cost-name">Infraestrutura (Água/Energia)</span>
+                    </div>
+                    <div class="cost-value">R$ 147.878,19</div>
+                </div>
+                <div class="cost-row total-row">
+                    <div class="cost-item">Subtotal Fase 1</div>
+                    <div class="cost-value text-gold">R$ 407.918,19</div>
+                </div>
+            </div>
+
+            <div class="action-container animate-in" data-delay="400">
+                <a href="https://drive.google.com/drive/folders/1PUlzBGuVXz0XiIok-9hiAR5a0fMnjdnE?usp=sharing"
+                    class="pdf-btn" target="_blank" rel="noopener noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    Ver Proposta Trietto e Águas de Teresina
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: FASE 2 - NÚCLEO ESTRUTURAL -->
+    <section class="slide" id="slide-4" data-slide="4">
+        <div class="slide__grid-bg"></div>
+        <div class="slide__content">
+            <div class="section-header animate-in" data-delay="0">
+                <span class="slide-eyebrow">FASE 2 (O CORAÇÃO DA OBRA)</span>
+                <h2 class="slide-title">Estrutura, Fundação e Materiais Metálicos</h2>
+            </div>
+
+            <div class="cost-table animate-in" data-delay="200">
+                <div class="cost-row detailed">
+                    <div class="cost-item">
+                        <span class="cost-name">Fundação e Estrutura Pré-Moldada</span>
+                        <span class="cost-desc">Inclui: Pilares, Placas, Piso 5ton/m², Mão de Obra de Cobertura e
+                            Fechamentos</span>
+                    </div>
+                    <div class="cost-value">R$ 1.491.787,64</div>
+                </div>
+                <div class="cost-row detailed">
+                    <div class="cost-item">
+                        <span class="cost-name">Ferragens e Materiais Metálicos</span>
+                        <span class="cost-desc">Inclui: Telhas, Calhas, PU, Tintas, Discos de Corte</span>
+                    </div>
+                    <div class="cost-value">R$ 700.000,00</div>
+                </div>
+                <div class="cost-row total-row">
+                    <div class="cost-item">Subtotal Fase 2</div>
+                    <div class="cost-value text-gold">R$ 2.191.787,64</div>
+                </div>
+            </div>
+
+            <div class="action-container animate-in" data-delay="400">
+                <a href="https://drive.google.com/drive/folders/1PUlzBGuVXz0XiIok-9hiAR5a0fMnjdnE?usp=sharing"
+                    class="pdf-btn" target="_blank" rel="noopener noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Ver Orçamentos Compremol
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: FASE 3 - SISTEMAS ESPECIALIZADOS -->
+    <section class="slide" id="slide-5" data-slide="5">
+        <div class="slide__grid-bg"></div>
+        <div class="slide__content">
+            <div class="section-header animate-in" data-delay="0">
+                <span class="slide-eyebrow">FASE 3</span>
+                <h2 class="slide-title">Sistemas Especializados (MEP & Security)</h2>
+                <p class="slide-subtitle-small">Sistemas integrados para garantir a operabilidade e segurança do ativo.
+                </p>
+            </div>
+
+            <div class="grid-cards animate-in" data-delay="200">
+                <div class="cost-card">
+                    <div class="card-title">Hidráulica e Sanitário</div>
+                    <div class="card-value">R$ 130.000,00</div>
+                </div>
+                <div class="cost-card">
+                    <div class="card-title">Elétrica Predial</div>
+                    <div class="card-value">R$ 180.000,00</div>
+                </div>
+                <div class="cost-card">
+                    <div class="card-title">Combate a Incêndio</div>
+                    <div class="card-value">R$ 150.000,00</div>
+                </div>
+                <div class="cost-card">
+                    <div class="card-title">SPDA (Para-raios)</div>
+                    <div class="card-value">R$ 150.000,00</div>
+                </div>
+                <div class="cost-card">
+                    <div class="card-title">Segurança e Câmeras</div>
+                    <div class="card-value">R$ 70.000,00</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: SERVIÇOS EXTERNOS E FINALIZAÇÃO -->
+    <section class="slide" id="slide-6" data-slide="6">
+        <div class="slide__grid-bg"></div>
+        <div class="slide__content">
+            <div class="section-header animate-in" data-delay="0">
+                <span class="slide-eyebrow">FASE 4</span>
+                <h2 class="slide-title">Serviços Externos e Finalização</h2>
+            </div>
+
+            <div class="cost-table animate-in" data-delay="200">
+                <div class="cost-row">
+                    <div class="cost-item">
+                        <span class="cost-name">Desmate e Terraplanagem</span>
+                    </div>
+                    <div class="cost-value">R$ 390.000,00</div>
+                </div>
+                <div class="cost-row">
+                    <div class="cost-item">
+                        <span class="cost-name">Calçamento/Pátio (7.250m² Piso Sextavado)</span>
+                    </div>
+                    <div class="cost-value">R$ 706.750,00</div>
+                </div>
+                <div class="cost-row">
+                    <div class="cost-item">
+                        <span class="cost-name">Muro de Fechamento (600m)</span>
+                    </div>
+                    <div class="cost-value">R$ 513.290,56</div>
+                </div>
+                <div class="cost-row">
+                    <div class="cost-item">
+                        <span class="cost-name">Bota-fora e Resíduos</span>
+                    </div>
+                    <div class="cost-value">R$ 60.000,00</div>
+                </div>
+            </div>
+
+            <div class="action-container animate-in" data-delay="400">
+                <a href="https://drive.google.com/drive/folders/1PUlzBGuVXz0XiIok-9hiAR5a0fMnjdnE?usp=sharing"
+                    class="pdf-btn" target="_blank" rel="noopener noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    Ver Orçamentos TC Engenharia e Premoldex
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 7: DASHBOARD FINANCEIRO CONSOLIDADO -->
+    <section class="slide" id="slide-7" data-slide="7">
+        <div class="slide__grid-bg"></div>
+        <div class="slide__content split-content">
+            <div class="content-left animate-in" data-delay="0">
+                <span class="slide-eyebrow">DASHBOARD DE CUSTOS</span>
+                <h2 class="slide-title">Viabilidade Econômica</h2>
+                <p class="slide-text">
+                    "O valor do investimento reflete a robustez de um projeto projetado para durar décadas com baixa
+                    manutenção."
+                </p>
+                <div class="chart-container animate-in" data-delay="200">
+                    <div class="bar-group">
+                        <div class="bar-label">INVESTIMENTO CIVIL</div>
+                        <div class="bar-track">
+                            <div class="bar-fill bg-navy" style="width: 68%;"></div>
+                        </div>
+                        <div class="bar-value">R$ 3.525.205,83</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-label">INFRAESTRUTURA EXTERNA</div>
+                        <div class="bar-track">
+                            <div class="bar-fill bg-cyan" style="width: 32%;"></div>
+                        </div>
+                        <div class="bar-value">R$ 1.610.040,56</div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-right flex-center animate-in" data-delay="400">
+                <div class="total-box">
+                    <span class="total-label">VALOR TOTAL ESTIMADO</span>
+                    <span class="total-value">R$ 3.525.205,83</span>
+                    <span class="total-label">1.175,06 m²</span>
+                    <div class="total-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 8: GARANTIA DE INTEGRIDADE ALFA -->
+    <section class="slide slide-closing" id="slide-8" data-slide="8">
+        <div class="slide__grid-bg slide8-bg"></div>
+        <div class="slide__content center-content">
+            <div class="closing-brand animate-closing">
+                <div class="icon-shield animate-in" data-delay="0">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <h2 class="closing-title animate-in" data-delay="100">"O Orçamento é o nosso compromisso com a sua
+                    verdade."</h2>
+                <p class="closing-text animate-in" data-delay="200">
+                    A ALFA entrega o caminho crítico financeiro. Sem aditivos surpresa. Sem custos ocultos.
+                    Transparência técnica do primeiro tijolo à entrega das chaves.
+                </p>
+                <div class="print-actions animate-in" data-delay="400">
+                    <button class="print-btn" onclick="window.print()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                        </svg>
+                        <span>Imprimir Relatório</span>
+                    </button>
+                    <button class="print-btn" onclick="window.print()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <span>Salvar em PDF</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keyboard hint -->
+    <div class="keyboard-hint" id="keyboardHint">
+        Use ← → ou clique nos botões para navegar
+    </div>
+
+    <script src="/orcamento/script.js"></script>
+</body>
+
+</html>
