@@ -280,9 +280,13 @@ h4 {
    BRANDING (Logo)
    ======================================================= */
 .brand-logo {
-    height: 36px;
-    margin-bottom: 40px;
+    height: clamp(45px, 10vw, 55px);
+    margin-bottom: 24px;
     filter: brightness(0) invert(11%) sepia(30%) saturate(1637%) hue-rotate(185deg) brightness(97%) contrast(98%);
+}
+
+.brand-logo--closing {
+    margin-bottom: 16px;
 }
 
 .hero-quote {
@@ -572,35 +576,33 @@ h4 {
     text-align: center;
 }
 
-.icon-shield {
-    display: inline-flex;
+.closing-brand {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    background: var(--accent-navy-light);
-    color: var(--accent-navy);
-    border-radius: 50%;
-    margin-bottom: 32px;
+    gap: 16px;
 }
 
-.closing-title {
-    font-size: 36px;
+.closing-logo {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    font-weight: 900;
+    color: #000000;
+    letter-spacing: 0.05em;
+    line-height: 1;
+}
+
+.closing-slogan {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 500;
     font-style: italic;
-    font-weight: 400;
-    color: var(--accent-navy);
-    margin-bottom: 24px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.closing-text {
-    font-size: 20px;
-    line-height: 1.6;
-    color: var(--text-muted);
+    color: var(--accent-cyan);
+    letter-spacing: 0.25em;
+    text-align: center;
     max-width: 600px;
-    margin: 0 auto 48px auto;
+    margin: 0 auto 32px auto;
 }
 
 .print-actions {
@@ -844,45 +846,132 @@ h4 {
         justify-content: center;
     }
 
-    .closing-title {
-        font-size: 28px;
+    .closing-logo {
+        font-size: clamp(2.5rem, 12vw, 5rem);
     }
 
-    .icon-shield {
-        width: 64px;
-        height: 64px;
+    .closing-slogan {
+        font-size: clamp(0.9rem, 3.5vw, 1.25rem);
+        line-height: 1.5;
+        margin-bottom: 24px;
     }
 }
 
 @media print {
-    body {
-        overflow: visible;
+
+    /* 1. RESET DE ESTRUTURA PARA IMPRESSÃO */
+    @page {
+        size: auto;
+        margin: 0mm;
     }
 
+    *,
+    *::before,
+    *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    html {
+        height: auto !important;
+        overflow: visible !important;
+        position: static !important;
+    }
+
+    body {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        color-adjust: exact !important;
+    }
+
+    /* 2. FORÇAR TODOS OS SLIDES A ESTAREM VISÍVEIS E EMPILHADOS */
+    .slide {
+        display: block !important;
+        visibility: visible !important;
+        position: static !important;
+        /* Essencial para quebrar o fluxo de slides sobrepostos */
+        inset: auto !important;
+        opacity: 1 !important;
+        transform: none !important;
+        height: 100vh !important;
+        width: 100vw !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        overflow: hidden !important;
+        background: white !important;
+        z-index: auto !important;
+    }
+
+    .slide:last-child {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+    }
+
+    .slide__content {
+        position: relative !important;
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        height: 100% !important;
+        padding: 4rem 3rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .center-content {
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .split-content {
+        flex-direction: row !important;
+        /* Mantém lado a lado no papel se houver espaço */
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+
+    /* 3. LIMPEZA VISUAL DO RELATÓRIO */
     .nav-controls,
     .progress-bar,
     .keyboard-hint,
-    .pdf-btn,
-    .print-actions {
+    .action-container,
+    .print-actions,
+    .total-glow {
         display: none !important;
     }
 
-    .slide {
-        position: relative;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        page-break-after: always;
-        height: 100vh;
-        overflow: hidden;
-    }
-
+    /* 4. PRESERVAÇÃO DE CORES E GRIDS */
     .animate-in {
-        opacity: 1;
-        transform: none;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
     }
 
     .bar-fill {
-        transition: none;
+        transition: none !important;
+    }
+
+    .slide__grid-bg {
+        position: absolute !important;
+        inset: 0 !important;
+        opacity: 0.15 !important;
+    }
+
+    .brand-logo {
+        filter: none !important;
+    }
+
+    /* Tabelas e cards */
+    .cost-table {
+        box-shadow: none !important;
+        border: 1px solid #eee !important;
     }
 }
