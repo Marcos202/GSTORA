@@ -31,15 +31,17 @@
 
         body {
             font-family: var(--font-sans);
-            background-color: var(--light-bg);
-            color: var(--light-txt);
+            background-color: var(--dark-bg);
+            color: var(--dark-txt);
             overflow-x: hidden;
             transition: background-color 0.8s ease, color 0.8s ease;
             -webkit-font-smoothing: antialiased;
         }
 
         /* Helpers */
-        .theme-dark {}
+        .theme-dark {
+            /* Theme marker */
+        }
 
         /* Hook for GSAP */
 
@@ -351,7 +353,106 @@
             transform: translateY(0);
         }
 
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            padding: 1rem 4rem;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-logo-img {
+            height: 80px;
+            display: block;
+            margin-bottom: 2rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-menu ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: opacity 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .nav-menu a:hover {
+            opacity: 1;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6) grayscale(30%);
+        }
+
+        .sec-hero {
+            background: transparent;
+            /* Remove solid black to see the video */
+            color: #FFFFFF;
+            overflow: hidden;
+        }
+
         @media screen and (max-width: 768px) {
+            header {
+                padding: 1.5rem 2rem;
+            }
+
+            header.scrolled {
+                padding: 1.2rem 2rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
             section {
                 padding: 4rem 1.5rem;
             }
@@ -375,9 +476,31 @@
 
 <body>
 
+    <header id="mainHeader">
+        <div class="header-logo" style="height: 35px;">
+            <img src="https://podtocantins.com/wp-content/uploads/2026/05/6ed9dad43a.png" alt="ALFA Logo"
+                style="height: 100%; filter: brightness(0) invert(1);">
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="/" style="color: #FFFFFF;">Home</a></li>
+                <li><a href="#problem" style="color: #FFFFFF;">Quem somos</a></li>
+                <li><a href="#ecosystem" style="color: #FFFFFF;">Área de atuação</a></li>
+                <li><a href="/atualcargas" style="color: #FFFFFF;">Cases</a></li>
+                <li><a href="/orcamento" style="color: #FFFFFF;">Orçamento</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <section class="sec-hero">
+        <div class="video-background">
+            <video id="hero-video" src="midia/fundogstora.mp4" muted playsinline preload="auto"></video>
+        </div>
+        <div class="hero-overlay"></div>
         <div class="container hero-content">
-            <h1 class="hero-logo">ALFA</h1>
+            <img src="https://podtocantins.com/wp-content/uploads/2026/05/6ed9dad43a.png" alt="ALFA Logo"
+                class="hero-logo-img">
+            <h1 class="hero-logo">GSTORA</h1>
             <div class="hero-sub">Soluções Empresariais</div>
             <div class="hero-slogan">Gestão inteligente para negócios em expansão.</div>
         </div>
@@ -412,7 +535,7 @@
         </div>
     </section>
 
-    <section class="sec-ecosystem theme-dark">
+    <section class="sec-ecosystem theme-dark" id="ecosystem">
         <div class="container">
             <h2 class="fade-up">Engenharia de Negócios<br>de Ponta a Ponta.</h2>
             <div class="pillars-list">
@@ -500,29 +623,87 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Theme Transition (White -> Dark -> White)
+        // Header Scroll Effect
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Theme Transition (Now Inverted: Dark -> White -> Dark)
         ScrollTrigger.create({
             trigger: ".sec-problem",
             start: "top 50%",
             endTrigger: ".sec-ecosystem",
             end: "bottom 50%",
+            onEnter: () => {
+                gsap.to("body", { backgroundColor: "#F8F9FB", color: "#0A1628", duration: 0.8 });
+                gsap.to(".nav-menu a", { color: "#0A1628", duration: 0.3 });
+            },
+            onLeave: () => {
+                gsap.to("body", { backgroundColor: "#050505", color: "#FFFFFF", duration: 0.8 });
+                gsap.to(".nav-menu a", { color: "#FFFFFF", duration: 0.3 });
+            },
+            onEnterBack: () => {
+                gsap.to("body", { backgroundColor: "#F8F9FB", color: "#0A1628", duration: 0.8 });
+                gsap.to(".nav-menu a", { color: "#0A1628", duration: 0.3 });
+            },
+            onLeaveBack: () => {
+                gsap.to("body", { backgroundColor: "#050505", color: "#FFFFFF", duration: 0.8 });
+                gsap.to(".nav-menu a", { color: "#FFFFFF", duration: 0.3 });
+            }
+        });
+
+        // Specific color change for nav links on light sections
+        ScrollTrigger.create({
+            trigger: ".sec-results",
+            start: "top 10%",
             onEnter: () => gsap.to("body", { backgroundColor: "#050505", color: "#FFFFFF", duration: 0.8 }),
-            onLeave: () => gsap.to("body", { backgroundColor: "#F8F9FB", color: "#0A1628", duration: 0.8 }),
-            onEnterBack: () => gsap.to("body", { backgroundColor: "#050505", color: "#FFFFFF", duration: 0.8 }),
             onLeaveBack: () => gsap.to("body", { backgroundColor: "#F8F9FB", color: "#0A1628", duration: 0.8 })
         });
 
-        // Hero Fade Out on Scroll
-        gsap.to('.hero-content', {
-            opacity: 0,
-            y: -50,
-            scrollTrigger: {
+        // Video Scroll Effect & Pinning
+        const heroVideo = document.getElementById('hero-video');
+        
+        function initVideoScroll() {
+            ScrollTrigger.create({
                 trigger: '.sec-hero',
                 start: 'top top',
-                end: 'bottom 20%',
-                scrub: true
-            }
-        });
+                end: '+=1200', // Reduzido de 3000 para 1200 para ficar mais rápido (menos scroll no mouse)
+                pin: true,
+                scrub: 1.5, // Suaviza o movimento (ajuda a reduzir o travamento do vídeo)
+                onUpdate: self => {
+                    try {
+                        if (!isNaN(heroVideo.duration) && heroVideo.duration > 0) {
+                            // Trava o vídeo um pouquinho antes do final para não voltar pro início
+                            let targetTime = self.progress * heroVideo.duration;
+                            let maxTime = heroVideo.duration - 0.1;
+                            heroVideo.currentTime = targetTime >= maxTime ? maxTime : targetTime;
+                        }
+                    } catch (e) {}
+                }
+            });
+
+            gsap.to('.hero-content', {
+                opacity: 0,
+                y: -50,
+                scrollTrigger: {
+                    trigger: '.sec-hero',
+                    start: 'top top',
+                    end: '+=800', // Fade out termina mais cedo
+                    scrub: true
+                }
+            });
+        }
+
+        if (heroVideo.readyState >= 1) { // HAVE_METADATA or higher
+            initVideoScroll();
+        } else {
+            heroVideo.addEventListener('loadedmetadata', initVideoScroll);
+        }
 
         // Universal Fade-Up animations
         const sections = ['.sec-problem', '.sec-ecosystem', '.sec-results', '.sec-cta'];
